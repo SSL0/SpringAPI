@@ -5,7 +5,6 @@ import lombok.*;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Builder
 @Table(name = "groups")
 public class Group {
@@ -31,4 +30,8 @@ public class Group {
     }
 
     private int yearOfRecruitment;
+
+    public Group() {
+
+    }
 }

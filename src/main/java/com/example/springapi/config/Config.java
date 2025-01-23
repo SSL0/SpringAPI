@@ -18,23 +18,36 @@ public class Config {
     CommandLineRunner commandLineRunner(StudentRepository studentRepository,
                                         GroupRepository groupRepository) {
         return args -> {
-            List<Group> groups = List.of(
-                    new Group(null, "8В20", "В", 20)
-            );
-            groupRepository.saveAll(groups);
+//            List<Group> groups = List.of(
+//                    new Group(null, "8В20", "В", 20),
+//                    new Group(null, "8В21", "В", 21)
+//            );
+//            groupRepository.saveAllAndFlush(groups);
+//
+//            List<Student> students = List.of(
+//                    new Student(null,
+//                            "Ivan",
+//                            "Ivan",
+//                            "Ivan",
+//                            groups.get(0),
+//                            new GregorianCalendar(2000, Calendar.MARCH, 25).getTime(),
+//                            'M',
+//                            "STUDYING"
+//                    ),
+//                    new Student(null,
+//                            "Jack",
+//                            "Jackov",
+//                            "Jackovich",
+//                            groups.get(0),
+//                            new GregorianCalendar(2001, Calendar.FEBRUARY, 12).getTime(),
+//                            'M',
+//                            "EXPELLED"
+//                    )
 
-            List<Student> students = List.of(
-                    new Student(null,
-                            "Ivan",
-                            "Ivan",
-                            "Ivan",
-                            groups.get(0),
-                            new GregorianCalendar(2000, Calendar.MARCH, 25).getTime(),
-                            'M',
-                            "STUDYING"
-                    )
-            );
-            studentRepository.saveAll(students);
+
+//            );
+//
+//            studentRepository.saveAll(students);
         };
     }
 
