@@ -6,6 +6,8 @@ import lombok.*;
 @Entity
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "groups")
 public class Group {
     @Id
@@ -22,16 +24,6 @@ public class Group {
     private String name;
     private String subdivision;
 
-    public Group(Long id, String name, String subdivision, int yearOfRecruitment) {
-        this.id = id;
-        this.name = name;
-        this.subdivision = subdivision;
-        this.yearOfRecruitment = yearOfRecruitment;
-    }
-
     private int yearOfRecruitment;
 
-    public Group() {
-
-    }
 }

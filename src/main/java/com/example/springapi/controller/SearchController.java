@@ -1,18 +1,20 @@
 package com.example.springapi.controller;
 
+import com.example.springapi.model.Group;
+import com.example.springapi.model.Student;
 import com.example.springapi.service.StudentService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("search")
 public class SearchController {
     private final StudentService studentService;
-    ObjectMapper mapper = new ObjectMapper();
     Gson gson = new Gson();
 
     public SearchController(StudentService studentService) {
@@ -32,5 +34,21 @@ public class SearchController {
     @GetMapping("/groups/{id}")
     public String getAllStudentsByGroup(@PathVariable long id){
         return gson.toJson(studentService.getStudentsByGroupID(id));
+    }
+
+    @GetMapping("/filter")
+    public List<Student> searchStudents(
+            @RequestParam(required = false) Long id,
+            @RequestParam(required = false) String firstname,
+            @RequestParam(required = false) String lastname,
+            @RequestParam(required = false) String surname,
+            @RequestParam(required = false) String groupName,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date birthDateFrom,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date birthDateTo,
+            @RequestParam(required = false) Character gender,
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) Integer courseNumber
+    ) {
+        return studentService.searchStudentsWithFilter(id, firstname, lastname, surname, groupName, birthDateFrom, birthDateTo, gender,status);
     }
 }

@@ -1,7 +1,5 @@
 package com.example.springapi.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,9 +7,10 @@ import java.util.Date;
 
 @Entity
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "students")
-@JsonSerialize
-@JsonDeserialize
 public class Student {
     @Id
     @SequenceGenerator(
@@ -34,21 +33,10 @@ public class Student {
     private Group group;
 
     private Date dateOfBirth;
-    private char gender;
+    private Character gender;
     private String status;
 
-    public Student(Long id, String lastName, String firstName, String surname, Group group, Date dateOfBirth, char gender, String status) {
-        this.id = id;
-        this.lastname = lastName;
-        this.firstname = firstName;
-        this.surname = surname;
-        this.group = group;
-        this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
-        this.status = status;
-    }
-
-    public Student() {
-
-    }
 }
+
+
+
