@@ -24,6 +24,6 @@ public class Group {
     private String name;
     private String subdivision;
 
-    private int yearOfRecruitment;
+    private Integer yearOfRecruitment;
 
 }

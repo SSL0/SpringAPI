@@ -49,6 +49,16 @@ public class SearchController {
             @RequestParam(required = false) String status,
             @RequestParam(required = false) Integer courseNumber
     ) {
-        return studentService.searchStudentsWithFilter(id, firstname, lastname, surname, groupName, birthDateFrom, birthDateTo, gender,status);
+        return studentService.searchStudentsWithFilter(
+                id,
+                firstname,
+                lastname,
+                surname,
+                groupName,
+                birthDateFrom,
+                birthDateTo,
+                gender,
+                status,
+                courseNumber);
     }
 }
