@@ -18,36 +18,42 @@ public class Config {
     CommandLineRunner commandLineRunner(StudentRepository studentRepository,
                                         GroupRepository groupRepository) {
         return args -> {
-//            List<Group> groups = List.of(
-//                    new Group(null, "8В20", "В", 20),
-//                    new Group(null, "8В21", "В", 21)
-//            );
-//            groupRepository.saveAllAndFlush(groups);
-//
-//            List<Student> students = List.of(
-//                    new Student(null,
-//                            "Ivan",
-//                            "Ivan",
-//                            "Ivan",
-//                            groups.get(0),
-//                            new GregorianCalendar(2000, Calendar.MARCH, 25).getTime(),
-//                            'M',
-//                            "STUDYING"
-//                    ),
-//                    new Student(null,
-//                            "Jack",
-//                            "Jackov",
-//                            "Jackovich",
-//                            groups.get(0),
-//                            new GregorianCalendar(2001, Calendar.FEBRUARY, 12).getTime(),
-//                            'M',
-//                            "EXPELLED"
-//                    )
-//
-//
-//            );
-//
-//            studentRepository.saveAll(students);
+            List<Group> groups = List.of(
+                    new Group(null, "8В20", "В", 2022),
+                    new Group(null, "8В21", "В", 2023)
+            );
+            try{
+                groupRepository.saveAllAndFlush(groups);
+            } catch (Exception e) {
+                System.out.println("Entities already exist");
+            }
+
+            List<Student> students = List.of(
+                    new Student(null,
+                            "Ivan",
+                            "Ivan",
+                            "Ivan",
+                            groups.get(0),
+                            new GregorianCalendar(2000, Calendar.MARCH, 25).getTime(),
+                            'M',
+                            "STUDYING"
+                    ),
+                    new Student(null,
+                            "Jack",
+                            "Jackov",
+                            "Jackovich",
+                            groups.get(1),
+                            new GregorianCalendar(2001, Calendar.FEBRUARY, 12).getTime(),
+                            'M',
+                            "EXPELLED"
+                    )
+            );
+            try{
+                studentRepository.saveAll(students);
+            } catch (Exception e){
+                System.out.println("Entities already exist");
+            }
+
         };
     }
 
