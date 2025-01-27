@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "groups")

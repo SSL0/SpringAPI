@@ -7,6 +7,7 @@ import com.example.springapi.repository.StudentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -40,13 +41,22 @@ public class Config {
                             new GregorianCalendar(2001, Calendar.FEBRUARY, 12).getTime(),
                             'M',
                             "EXPELLED"
+                    ),
+                    new Student(null,
+                            "sdfa",
+                            "asdfa",
+                            "asdf",
+                            groups.get(1),
+                            new GregorianCalendar(2001, Calendar.FEBRUARY, 12).getTime(),
+                            'M',
+                            "EXPELLED"
                     )
             );
-
-            studentRepository.deleteAll();
-            groupRepository.deleteAll();
-            groupRepository.saveAllAndFlush(groups);
-            studentRepository.saveAllAndFlush(students);
+            try {
+                groupRepository.saveAllAndFlush(groups);
+                studentRepository.saveAllAndFlush(students);
+            } catch (DataIntegrityViolationException ignored) {
+            }
         };
     }
 
