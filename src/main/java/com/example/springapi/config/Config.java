@@ -19,44 +19,46 @@ public class Config {
     CommandLineRunner commandLineRunner(StudentRepository studentRepository,
                                         GroupRepository groupRepository) {
         return args -> {
-            List<Group> groups = List.of(
-                    new Group(null, "8В20", "В", 2022),
-                    new Group(null, "8В21", "В", 2023)
-            );
-            List<Student> students = List.of(
-                    new Student(null,
-                            "Ivan",
-                            "Ivan",
-                            "Ivan",
-                            groups.get(0),
-                            new GregorianCalendar(2000, Calendar.MARCH, 25).getTime(),
-                            'M',
-                            "STUDYING"
-                    ),
-                    new Student(null,
-                            "Jack",
-                            "Jackov",
-                            "Jackovich",
-                            groups.get(1),
-                            new GregorianCalendar(2001, Calendar.FEBRUARY, 12).getTime(),
-                            'M',
-                            "EXPELLED"
-                    ),
-                    new Student(null,
-                            "sdfa",
-                            "asdfa",
-                            "asdf",
-                            groups.get(1),
-                            new GregorianCalendar(2001, Calendar.FEBRUARY, 12).getTime(),
-                            'M',
-                            "EXPELLED"
-                    )
-            );
-            try {
-                groupRepository.saveAllAndFlush(groups);
-                studentRepository.saveAllAndFlush(students);
-            } catch (DataIntegrityViolationException ignored) {
-            }
+//            List<Group> groups = List.of(
+//                    new Group(null, "8В20", "В", 2022),
+//                    new Group(null, "8В21", "В", 2023)
+//            );
+//            List<Student> students = List.of(
+//                    new Student(null,
+//                            "Ivan",
+//                            "Ivan",
+//                            "Ivan",
+//                            groups.get(0),
+//                            new GregorianCalendar(2000, Calendar.MARCH, 25).getTime(),
+//                            'M',
+//                            "STUDYING"
+//                    ),
+//                    new Student(null,
+//                            "Jack",
+//                            "Jackov",
+//                            "Jackovich",
+//                            groups.get(1),
+//                            new GregorianCalendar(2001, Calendar.FEBRUARY, 12).getTime(),
+//                            'M',
+//                            "EXPELLED"
+//                    ),
+//                    new Student(null,
+//                            "1111",
+//                            "asdgfhjk",
+//                            "22222",
+//                            groups.get(1),
+//                            new GregorianCalendar(2001, Calendar.FEBRUARY, 12).getTime(),
+//                            'M',
+//                            "EXPELLED"
+//                    )
+//            );
+//
+//
+//            try {
+//                groups.forEach(groupRepository::save);
+//                students.forEach(studentRepository::save);
+//            } catch (DataIntegrityViolationException ignored) {
+//            }
         };
     }
 

@@ -9,9 +9,7 @@ services:
     ports:
       - '8080:8080'
     environment:
-      - 'POSTGRES_URL=jdbc:postgresql://db:5432/mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      - 'DB_HOST=db'
   db:
     image: 'postgres:latest'
     environment:
