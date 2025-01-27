@@ -21,7 +21,7 @@ public class SearchControllerTests {
     private MockMvc mockMvc;
     private StudentService studentService;
     @Test
-    void testGetStudentById() throws Exception {
+    void testGetStudents() throws Exception {
         mockMvc.perform(get("/students"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
