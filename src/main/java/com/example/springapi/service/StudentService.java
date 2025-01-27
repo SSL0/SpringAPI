@@ -68,7 +68,9 @@ public class StudentService {
                 .gender(gender)
                 .status(status)
                 .build();
-
+//        List<Student> students = studentRepository.searchStudents(
+//                id, firstname, lastname, surname, birthDateFrom, birthDateTo, gender, status
+//        );
         List<Student> list = studentRepository.findAll(Example.of(studentExample), sortConditions);
         Stream<Student> studentStream = list.stream();
         if(birthDateFrom != null){

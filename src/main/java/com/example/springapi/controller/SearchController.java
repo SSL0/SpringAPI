@@ -1,43 +1,52 @@
 package com.example.springapi.controller;
 
-import com.example.springapi.model.Group;
 import com.example.springapi.model.Student;
 import com.example.springapi.service.StudentService;
-import com.google.gson.Gson;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("search")
+@RequestMapping("/")
 public class SearchController {
     private final StudentService studentService;
-    Gson gson = new Gson();
 
     public SearchController(StudentService studentService) {
         this.studentService = studentService;
     }
 
     @GetMapping("/students")
-    public String getStudents(){
-        return gson.toJson(studentService.getStudents());
+    public ResponseEntity<?> getStudents(){
+        List<Student> students = studentService.getStudents();
+
+        if(students.isEmpty()) return ResponseEntity.noContent().build();
+
+        return ResponseEntity.ok(students);
     }
 
     @GetMapping("/students/{id}")
-    public String getStudent(@PathVariable long id){
-        return gson.toJson(studentService.getStudentById(id));
+    public ResponseEntity<?> getStudent(@PathVariable long id){
+        Student student = studentService.getStudentById(id);
+
+        if(student == null) return ResponseEntity.noContent().build();
+
+        return ResponseEntity.ok(student);
     }
 
     @GetMapping("/groups/{id}")
-    public String getAllStudentsByGroup(@PathVariable long id){
-        return gson.toJson(studentService.getStudentsByGroupID(id));
+    public ResponseEntity<?> getAllStudentsByGroup(@PathVariable long id){
+        List<Student> students = studentService.getStudentsByGroupID(id);
+
+        if(students.isEmpty()) return ResponseEntity.noContent().build();
+
+        return ResponseEntity.ok(students);
     }
 
     @GetMapping("/filter")
-    public List<Student> searchStudents(
+    public ResponseEntity<?> searchStudents(
             @RequestParam(required = false) Long id,
             @RequestParam(required = false) String firstname,
             @RequestParam(required = false) String lastname,
@@ -49,7 +58,7 @@ public class SearchController {
             @RequestParam(required = false) String status,
             @RequestParam(required = false) Integer courseNumber
     ) {
-        return studentService.searchStudentsWithFilter(
+        List<Student> students = studentService.searchStudentsWithFilter(
                 id,
                 firstname,
                 lastname,
@@ -60,5 +69,8 @@ public class SearchController {
                 gender,
                 status,
                 courseNumber);
+        if(students.isEmpty()) return ResponseEntity.noContent().build();
+
+        return ResponseEntity.ok(students);
     }
 }

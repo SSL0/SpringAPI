@@ -17,9 +17,13 @@ mvn clean package -Dmaven.test.skip
 Для запуска приложения необходимо выполнить следующую команду:
 #### Windows
 ```
-docker-compose.exe up
+docker-compose.exe up --build
 ```
 #### Unix
 ```
-docker-compose up
+docker-compose up --build
 ```
+
+### Заполнение базы данных
+
+Для заполнения базы данных можно изменить файл `Config.java`, добавив туда новые сущности

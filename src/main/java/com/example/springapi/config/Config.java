@@ -22,12 +22,6 @@ public class Config {
                     new Group(null, "8В20", "В", 2022),
                     new Group(null, "8В21", "В", 2023)
             );
-            try{
-                groupRepository.saveAllAndFlush(groups);
-            } catch (Exception e) {
-                System.out.println("Entities already exist");
-            }
-
             List<Student> students = List.of(
                     new Student(null,
                             "Ivan",
@@ -48,12 +42,11 @@ public class Config {
                             "EXPELLED"
                     )
             );
-            try{
-                studentRepository.saveAll(students);
-            } catch (Exception e){
-                System.out.println("Entities already exist");
-            }
 
+            studentRepository.deleteAll();
+            groupRepository.deleteAll();
+            groupRepository.saveAllAndFlush(groups);
+            studentRepository.saveAllAndFlush(students);
         };
     }
 
