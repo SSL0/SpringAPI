@@ -1,5 +1,8 @@
 # SpringAPI
 
+Требования к проекту описаны в файле [REQUIREMENTS.md](/REQUIREMENTS.md)
+
+
 ### Зависимости
 Для запуска приложения требуется:
 - Docker-compose
