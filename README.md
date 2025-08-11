@@ -1,4 +1,4 @@
-# SpringAPI
+# StudAPI
 
 Требования к проекту описаны в файле [REQUIREMENTS.md](/REQUIREMENTS.md)
 
